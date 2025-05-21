@@ -22,19 +22,24 @@
 </head>
 
 <body>
-  <audio id="bg-audio" autoplay loop>
-    <source src="https://156.67.83.133/Common/Images/audio.mp3">
+  <audio id="bg-audio" loop>
+    <source src="https://156.67.83.133/Common/Images/audio.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
   <!-- credits to the writter @rivalfarizi  follow him in https://codepen.io/rivalfarizi/pen/zxOWLry-->
   <canvas id="pinkboard" style="width: 100%; height: 100%;"></canvas>
   <script>
+    const audio = document.getElementById("bg-audio");
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const audio = document.getElementById("bg-audio");
-      audio.volume = 0.3;
-
+    document.body.addEventListener("click", () => {
+      audio.play().catch(error => console.log("Error playing audio:", error));
     });
+    document.addEventListener("DOMContentLoaded", function () {
+      playAudio();
+    });
+    function playAudio() {
+      audio.play().catch(error => console.log("Error playing audio:", error));
+    }
     var settings = {
       particles: {
         length: 10000,
@@ -214,6 +219,7 @@
     window.addEventListener("mousemove", function (e) {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      audio.play().catch(error => console.log("Error playing audio:", error));
     });
 
     // Mobile touch support
@@ -222,6 +228,7 @@
         mouse.x = e.touches[0].clientX;
         mouse.y = e.touches[0].clientY;
         mouse.active = true;
+        audio.play().catch(error => console.log("Error playing audio:", error));
       }
     }, { passive: true });
 
@@ -230,11 +237,13 @@
         mouse.x = e.touches[0].clientX;
         mouse.y = e.touches[0].clientY;
         mouse.active = true;
+        audio.play().catch(error => console.log("Error playing audio:", error));
       }
     }, { passive: true });
 
     window.addEventListener("touchend", function () {
       mouse.active = false;
+      audio.play().catch(error => console.log("Error playing audio:", error));
     });
 
     (function (canvas) {
